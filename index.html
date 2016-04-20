@@ -1,69 +1,70 @@
 <html>
     <head>
         <title>Test Page</title>
-    </head>
-    <script type="text/javascript">
-        var custom = "supertag://channel=direct&campaign_id=12345";
-        var alt = "http://datalicious.com";
-        var g_intent = "intent://channel=direct&campaign_id=12345/#Intent;scheme=supertag;package=com.datalicious.demoapp;end";
-        var timer;
-        var heartbeat;
-        var iframe_timer;
+        <script type="text/javascript">
+            var custom = "supertag://channel=direct&campaign_id=12345";
+            var alt = "http://datalicious.com";
+            var g_intent = "intent://channel=direct&campaign_id=12345/#Intent;scheme=supertag;package=com.datalicious.demoapp;end";
+            var timer;
+            var heartbeat;
+            var iframe_timer;
+            
+            function clearTimers() {
+                clearTimeout(timer);
+                clearTimeout(heartbeat);
+                clearTimeout(iframe_timer);
+            }
         
-        function clearTimers() {
-            clearTimeout(timer);
-            clearTimeout(heartbeat);
-            clearTimeout(iframe_timer);
+        function intervalHeartbeat() {
+            if (document.webkitHidden || document.hidden) {
+                clearTimers();
+            }
         }
-    
-    function intervalHeartbeat() {
-        if (document.webkitHidden || document.hidden) {
-            clearTimers();
+        
+        function tryIframeApproach() {
+            var iframe = document.createElement("iframe");
+            iframe.style.border = "none";
+            iframe.style.width = "1px";
+            iframe.style.height = "1px";
+            iframe.onload = function () {
+                document.location = alt;
+            };
+            iframe.src = custom;
+            document.body.appendChild(iframe);
         }
-    }
-    
-    function tryIframeApproach() {
-        var iframe = document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "1px";
-        iframe.style.height = "1px";
-        iframe.onload = function () {
-            document.location = alt;
-        };
-        iframe.src = custom;
-        document.body.appendChild(iframe);
-    }
-    
-    function tryWebkitApproach() {
-        document.location = custom;
-        timer = setTimeout(function () {
-                           document.location = alt;
-                           }, 2500);
-    }
-    
-    function useIntent() {
-        document.location = g_intent;
-    }
-    
-    function launch_app_or_alt_url(el) {
-        heartbeat = setInterval(intervalHeartbeat, 200);
-        if (navigator.userAgent.match(/Chrome/)) {
-            useIntent();
-        } else if (navigator.userAgent.match(/Firefox/)) {
-            tryWebkitApproach();
-            iframe_timer = setTimeout(function () {
-                                      tryIframeApproach();
-                                      }, 1500);
-        } else {
-            tryIframeApproach();
+        
+        function tryWebkitApproach() {
+            document.location = custom;
+            timer = setTimeout(function () {
+                               document.location = alt;
+                               }, 2500);
         }
-    }
+        
+        function useIntent() {
+            document.location = g_intent;
+        }
+        
+        function launch_app_or_alt_url(el) {
+            heartbeat = setInterval(intervalHeartbeat, 200);
+            if (navigator.userAgent.match(/Chrome/)) {
+                useIntent();
+            } else if (navigator.userAgent.match(/Firefox/)) {
+                tryWebkitApproach();
+                iframe_timer = setTimeout(function () {
+                                          tryIframeApproach();
+                                          }, 1500);
+            } else {
+                tryIframeApproach();
+            }
+        }
+        
+        $(".source_url").click(function (event) {
+                               launch_app_or_alt_url($(this));
+                               event.preventDefault();
+                               });
+            </script>
+    </head>
     
-    $(".source_url").click(function (event) {
-                           launch_app_or_alt_url($(this));
-                           event.preventDefault();
-                           });
-        </script>
     <body>
         <p style="font-size: 40pt;">This is a test page. Tap <a href="#" class="source_url">here</a> to test your deep link</p>
     </body>
