@@ -1,16 +1,16 @@
 <html>
     <head>
         <title>Test Page</title>
-    </head>
-    <script language="text/javascript">
-        window.onload = function () {
-            var ua = navigator.userAgent.toLowerCase();
-            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-            if(isAndroid) {
-                location.href = "market://details?id=my.package.name&referrer=someDataToTransfer";
+        <script language="text/javascript">
+            window.onload = function () {
+                var ua = navigator.userAgent.toLowerCase();
+                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                if(isAndroid) {
+                    location.href = "market://details?id=my.package.name&referrer=someDataToTransfer";
+                }
             }
-        }
-    </script>
+        </script>
+    </head>
 
     <body>
         <h1>You have landed at our fallback page, which means you have not installed our super cool application.</h1>
