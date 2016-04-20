@@ -1,15 +1,6 @@
 <html>
     <head>
         <title>Test Page</title>
-        <script language="text/javascript">
-            window.onload = function () {
-                var ua = navigator.userAgent.toLowerCase();
-                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-                if(isAndroid) {
-                    location.href = "market://details?id=my.package.name&referrer=someDataToTransfer";
-                }
-            }
-        </script>
     </head>
     
     <body>
