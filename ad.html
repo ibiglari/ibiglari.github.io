@@ -6,7 +6,7 @@
                 var ua = navigator.userAgent.toLowerCase();
                 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
                 if (isAndroid) {
-                    location.href = "market://details?id=my.package.name&referrer=someDataToTransfer";
+                    location.href = "market://details?id=my.package.name&referrer=" + encodeURIComponent(document.location.href);
                 }
             }
         </script>
