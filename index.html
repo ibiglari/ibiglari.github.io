@@ -44,7 +44,7 @@
             document.location = g_intent;
         }
         
-        function launch_app_or_alt_url(el) {
+        function launch_app_or_alt_url() {
             heartbeat = setInterval(intervalHeartbeat, 200);
             if (navigator.userAgent.match(/Chrome/)) {
                 useIntent();
@@ -56,12 +56,13 @@
             } else {
                 tryIframeApproach();
             }
+            return false;
         }
 
             </script>
     </head>
     
     <body>
-        <p style="font-size: 40pt;">This is a test page. Tap <a href="#" onClick="javascript:launch_app_or_alt_url($(this));">here</a> to test your deep link</p>
+        <p style="font-size: 40pt;">This is a test page. Tap <a href="#" onClick="return launch_app_or_alt_url();">here</a> to test your deep link</p>
     </body>
 </html>
