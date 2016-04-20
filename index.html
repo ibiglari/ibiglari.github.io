@@ -57,15 +57,11 @@
                 tryIframeApproach();
             }
         }
-        
-        $(".source_url").click(function (event) {
-                               launch_app_or_alt_url($(this));
-                               event.preventDefault();
-                               });
+
             </script>
     </head>
     
     <body>
-        <p style="font-size: 40pt;">This is a test page. Tap <a href="#" class="source_url">here</a> to test your deep link</p>
+        <p style="font-size: 40pt;">This is a test page. Tap <a href="#" onClick="javascript:launch_app_or_alt_url($(this));">here</a> to test your deep link</p>
     </body>
 </html>
