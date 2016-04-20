@@ -1,9 +1,19 @@
 <html>
     <head>
         <title>Test Page</title>
+        <script language="text/javascript">
+            window.onload = function () {
+                var ua = navigator.userAgent.toLowerCase();
+                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                if(isAndroid) {
+                    location.href = "market://details?id=my.package.name&referrer=someDataToTransfer";
+                }
+            }
+        </script>
     </head>
     
     <body>
-        <h1>This is a nice advertisment. Tap <a href="http://ibiglari.github.io/ad.html?channel=direct&campaign_id=12345">here</a> to buy our product</h1>
+        <h1>This is a nice advertisment. Tap <a href="http://ibiglari.github.io/ad.html?channel=direct&campaign_id=12345">here</a> to buy our product.</h1>
+        <p>This is the main content of the page which nobody is interested in reading. Why don't you click our nice advertisment?'</p>
     </body>
 </html>
