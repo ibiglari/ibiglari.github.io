@@ -4,9 +4,9 @@
         <script>
             window.onload = function () {
                 var ua = navigator.userAgent.toLowerCase();
-                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                var isAndroid = ua.indexOf("android") > -1;
                 if (isAndroid) {
-                    location.href = "market://details?id=my.package.name&referrer=" + encodeURIComponent(document.location.href);
+                    location.href = "market://details?id=com.datalicious.demoapp&referrer=" + encodeURIComponent(document.location.href);
                 }
             }
         </script>
